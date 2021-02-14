@@ -1,0 +1,9 @@
+diff a/Assets/Player/Camera/Shooting.cs b/Assets/Player/Camera/Shooting.cs	(rejected hunks)
+@@ -38,6 +38,7 @@
+ 
+ 
+         }
++        if(Input.GetKeyDown(Recharger) && hold.oui == true && weapon.munitions != weapon.chargeur)
+         {
+             weapon.munitions = weapon.chargeur;
+             AudioSource.PlayOneShot(GrosRechargementquivabien,0.7f);
