@@ -20,19 +20,19 @@ public class Hold : MonoBehaviour
     public Weapon arme;
     public Objet objet;
     public float throwForce;
-    public float force =0;
+    public float force = 1f;
     
 
     void Start ()
     {
         tpsCam = true;
-        fpsCam = false; 
+        fpsCam = false;
     }
     void Update()
     {   
-        if(Input.GetKey(KeyCode.Mouse1))
+        if(Input.GetKey(KeyCode.Mouse1) && force < 100f)
         {
-            force+=1;
+            force += 0.5f;
         }
         if(Input.GetKeyDown(inputtps) & Input.GetKey(inputtps))
         {
@@ -161,7 +161,7 @@ public class Hold : MonoBehaviour
             objet.transform.parent = null;
             objetoui = false;
             objet.tag = "Objet";
-            objet.GetComponent<Rigidbody>().AddForce(emplacement.forward * throwForce*force);
+            objet.GetComponent<Rigidbody>().AddForce(emplacement.forward * throwForce * force);
             objet = null; 
         }
     }
