@@ -162,7 +162,8 @@ public class Hold : MonoBehaviour
             objetoui = false;
             objet.tag = "Objet";
             objet.GetComponent<Rigidbody>().AddForce(emplacement.forward * throwForce * force);
-            objet = null; 
+            objet = null;
+            force = 0;
         }
     }
 }
