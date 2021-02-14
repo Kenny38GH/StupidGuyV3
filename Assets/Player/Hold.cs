@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Hold : MonoBehaviour
 {
@@ -21,6 +22,10 @@ public class Hold : MonoBehaviour
     public Objet objet;
     public float throwForce;
     public float force = 1f;
+
+    public Text pourcentage;
+
+    
     
 
     void Start ()
@@ -33,6 +38,15 @@ public class Hold : MonoBehaviour
         if(Input.GetKey(KeyCode.Mouse1) && force < 100f)
         {
             force += 0.5f;
+        }
+        
+        if(objetoui== true)
+        {
+            pourcentage.text = force.ToString() + "%";
+        }
+        else
+        {
+            pourcentage.text = "";
         }
         if(Input.GetKeyDown(inputtps) & Input.GetKey(inputtps))
         {
