@@ -15,6 +15,14 @@ public class PathFinding : MonoBehaviour
     public bool follow_player = false;
     public Shooting_Enemy shooten;
     public GameObject player;
+    public Shooting cam_sound;
+    public AudioClip trigger;
+    public AudioClip lost;
+    public GameObject exclamation_point;
+    public bool joueleson = true;
+    public bool joueleson2;
+    public int w2;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -23,11 +31,12 @@ public class PathFinding : MonoBehaviour
         valabas3 = goPoint3.transform.position;
         valabas4 = goPoint4.transform.position;
         gopoint1 = true;
+        w2=80;
 
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (gopoint1 == true && follow_player == false)
         {
@@ -81,6 +90,30 @@ public class PathFinding : MonoBehaviour
         {
             follow_player = false;
         }
+        if(follow_player == true && w2>0)
+        {
+            w2 -= 1;
+        }
+        if(follow_player == true && joueleson == true)
+        {
+            exclamation_point.SetActive(true);
+            cam_sound.AudioSource.PlayOneShot(trigger,0.7f);
+            exclamation_point.SetActive(true);
+            joueleson = false;
+            joueleson2 = true;
+        }
+        if(follow_player == false)
+        {
+            exclamation_point.SetActive(false);
+            joueleson = true;
+            w2 = 80;
+        }
+        if(follow_player == false && joueleson2 == true)
+        {
+            cam_sound.AudioSource.PlayOneShot(lost,1f);
+            joueleson2 = false;
+        }
+
     }
     void FaceTarget()
         {

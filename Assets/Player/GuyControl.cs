@@ -88,7 +88,7 @@ public class GuyControl : MonoBehaviour
         // Sprint à gauche
         if (Input.GetKey(inputLeft) && Input.GetKey(KeyCode.LeftShift))
         {
-            transform.Translate(-petitspas * 2,0,0);
+            transform.Translate(-runSpeed * Time.deltaTime,0,0);
             animations.Play("rig|Run_boy_run");
             test2 = false;
             test4= false;
@@ -96,7 +96,7 @@ public class GuyControl : MonoBehaviour
         // Sprint à droite
         if (Input.GetKey(inputRight) && Input.GetKey(KeyCode.LeftShift))
         {
-            transform.Translate(petitspas * 2,0,0);
+            transform.Translate(runSpeed * Time.deltaTime,0,0);
             animations.Play("rig|Run_boy_run");
             test2 = false;
             test4= false;

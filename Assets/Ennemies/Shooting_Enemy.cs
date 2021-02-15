@@ -13,6 +13,7 @@ public class Shooting_Enemy : MonoBehaviour
     public AudioSource AudioSource;
     public RaycastHit hit;
     public bool tombe = false;
+    public PathFinding pathf;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +37,8 @@ public class Shooting_Enemy : MonoBehaviour
         
         if (Physics.Raycast(tire.transform.position, tire.transform.forward, out hit, range))
         {
-            if(hit.collider.tag=="Player" && w==100)
+
+            if(hit.collider.tag=="Player" && w==100 && pathf.w2 == 0)
             {
                 Target target = hit.transform.GetComponent<Target>();
                 target.TakeDamage(degats);
