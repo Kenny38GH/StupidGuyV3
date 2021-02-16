@@ -25,9 +25,13 @@ public class Explosive_Barrel : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position,cam.transform.forward, out hit, weapon.range))
         {
-            if(hit.collider.tag=="Barrel" && Input.GetKeyDown(KeyCode.Mouse0))
+            if(hit.collider.tag=="Objet" && Input.GetKeyDown(KeyCode.Mouse0))
             {
-                hit.collider.tag = "Barrel_actif";
+                Explosive_Barrel explobarrel = hit.transform.GetComponent<Explosive_Barrel>();
+                if(explobarrel != null)
+                {
+                    hit.collider.tag = "Barrel_actif";
+                }
             }
         }
         if(tag=="Barrel_actif")
