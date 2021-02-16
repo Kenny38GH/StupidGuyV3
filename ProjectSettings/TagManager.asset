@@ -9,6 +9,8 @@ TagManager:
   - Weapon_active
   - Objet_active
   - Fire
+  - Barrel
+  - Barrel_actif
   layers:
   - Default
   - TransparentFX
