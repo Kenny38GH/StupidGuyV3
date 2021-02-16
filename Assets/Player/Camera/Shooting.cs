@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 public class Shooting : MonoBehaviour
@@ -64,6 +64,40 @@ public class Shooting : MonoBehaviour
         
             SetMun(weapon.munitions);
             SetLife();
+        }
+
+        if (GameObject.Find("Emplacement_arme").transform.childCount > 0)
+        {
+            emplacement = GameObject.Find("Emplacement_arme");
+            weapon = emplacement.transform.GetChild (0).gameObject.GetComponent<Weapon>();
+            
+        
+
+            if(Input.GetButtonDown("Fire1") && weapon.munitions != 0 && hold.oui == true)
+            {
+                Shoot();
+                GameObject projectile = (GameObject)Instantiate(bullet,weapon.transform.Find("Canon").position,weapon.transform.Find("Canon").rotation );
+                projectile.GetComponent<Rigidbody>().AddForce(projectile.transform.forward * shootForce);
+                weapon.munitions -=1;
+            
+                AudioSource.PlayOneShot(Grosdeagledesfamilles,0.7f);
+            }
+            if(Input.GetKeyDown(Recharger) && hold.oui == true && weapon.munitions != weapon.chargeur)
+            {
+                weapon.munitions = weapon.chargeur;
+                AudioSource.PlayOneShot(GrosRechargementquivabien,0.7f);
+
+            }
+            if(Input.GetButtonDown("Fire1") && weapon.munitions == 0 && hold.oui == true)
+            {
+                AudioSource.PlayOneShot(PlusdeballeBoloss,0.7f);
+            }
+            SetMun(weapon.munitions);
+            SetLife();
+        }
+         if (hold.oui == false)
+        {
+            amoText.text = "";
         }
     }
     void Shoot()
