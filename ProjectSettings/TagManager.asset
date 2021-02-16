@@ -11,6 +11,7 @@ TagManager:
   - Fire
   - Barrel
   - Barrel_actif
+  - Jetpack
   layers:
   - Default
   - TransparentFX

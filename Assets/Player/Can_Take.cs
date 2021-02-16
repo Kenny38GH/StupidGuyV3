@@ -8,12 +8,15 @@ public class Can_Take : MonoBehaviour
     public Hold hold;
     public Text texte_take;
     public Text texte_take_arme;
+    public Text texte_take_item;
 
     // Start is called before the first frame update
     void Start()
     {
         texte_take.text = "";
         texte_take_arme.text = "";
+        texte_take_item.text = "";
+
     }
 
     // Update is called once per frame
@@ -37,7 +40,15 @@ public class Can_Take : MonoBehaviour
             else
             {
                 texte_take_arme.text = "";
-            } 
+            }
+            if(hit.collider.tag=="Jetpack" && hold.jetpackOn == false)
+            {
+                texte_take_item.text = "Grab Item [F]";
+            }
+            else
+            {
+                texte_take_item.text = "";
+            }  
         }   
     }
 }

@@ -9,6 +9,7 @@ public class Hold : MonoBehaviour
     public Transform theDestfps;
     public Transform emplacement;
     public Transform emplacementtps;
+    public Transform emplacementjetpack;
     public string Prendre,Lacher;
     public Camera cam;
     public float rangegrab = 30f;
@@ -18,11 +19,12 @@ public class Hold : MonoBehaviour
     public string inputtps;
     public bool oui = false;
     public bool objetoui = false;
+    public bool jetpackOn = false;
     public Weapon arme;
     public Objet objet;
+    public Jetpack jetpack;
     public float throwForce;
     public float force = 1f;
-
     public Text pourcentage;
 
     
@@ -104,7 +106,11 @@ public class Hold : MonoBehaviour
             } 
         }
 
-
+        if(jetpackOn == true)
+        {
+            jetpack.transform.position = emplacementjetpack.position;
+            jetpack.transform.parent = GameObject.Find("Emplacement_jetpack").transform;
+        }
         
     }
     void Grab()
@@ -144,6 +150,20 @@ public class Hold : MonoBehaviour
                     arme.transform.position = emplacementtps.position;
                     arme.transform.parent = GameObject.Find("Emplacement_armetps").transform;
                 }
+            }
+            if(hit.collider.tag=="Jetpack" && jetpackOn == false)
+            {
+                jetpackOn = true;
+                jetpack = hit.transform.GetComponent<Jetpack>();
+                jetpack.transform.position = emplacementjetpack.position;
+                jetpack.transform.parent = GameObject.Find("Emplacement_jetpack").transform;
+                float yRotation = jetpack.player.transform.eulerAngles.y;
+                float xRotation = jetpack.player.transform.eulerAngles.x;
+                jetpack.transform.rotation = Quaternion.Euler(260-xRotation,+yRotation+180,0);   
+                jetpack.transform.GetComponent<Rigidbody>().useGravity = false;
+                jetpack.transform.GetComponent<BoxCollider>().enabled = false;
+                jetpack.transform.GetComponent<Rigidbody>().freezeRotation = true;
+                jetpack.transform.GetComponent<Rigidbody>().velocity = new Vector3 (0,0,0);
             }
         }     
     }
