@@ -37,7 +37,7 @@ public class Hold : MonoBehaviour
     {   
         if(Input.GetKey(KeyCode.Mouse1) && force < 100f)
         {
-            force += 0.5f;
+            force += 1f;
         }
         
         if(objetoui== true)
