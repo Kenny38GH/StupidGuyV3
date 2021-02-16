@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: cote_barrel
+  m_Name: Cote_barrel
   m_Shader: {fileID: -6465566751694194690, guid: 6e982d1511714d34aad72beb210f8868,
     type: 3}
   m_ShaderKeywords: 

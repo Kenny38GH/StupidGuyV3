@@ -27,6 +27,7 @@ public class GuyControl : MonoBehaviour
     bool test4 = false;
     RaycastHit hit;
     Rigidbody rb;
+    Animator GuyAnimation;
 
     // Start is called before the first frame updatee
     //Add commentifezifbzif
@@ -35,6 +36,7 @@ public class GuyControl : MonoBehaviour
         animations = gameObject.GetComponent<Animation>();
         playerCollider = gameObject.GetComponent<CapsuleCollider>();
         rb = GetComponent<Rigidbody>();
+        GuyAnimation = GetComponent<Animator>();
     }
     bool IsGrounded()
     {
