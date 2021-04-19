@@ -20,32 +20,96 @@ public class Orbit : MonoBehaviour {
     public GameObject partie3;
     public GameObject partie4;
     public GameObject partie5;
-    public float minZoom = 5.0f;
-    public float maxZoom = 250.0f;
+    public bool camenplace;
+    public Vector3 camrayorigin, camraydirection;
+    RaycastHit hit;
+    Ray camRay;
+    public Vector3 poscam;
+
+    public float dist,camX,camY,camZ;
+    public float clipdist;
+
+    //public float minZoom = 5.0f;
+    //public float maxZoom = 250.0f;
 
     void Start ()
     {
         tpsCam = true;
         fpsCam = false;
+        
     }
   
     void Update()
     {
+        
+        
+
+
     if(tpsCam == true)
     {
-        transform.position = Player.transform.position;
-        transform.Translate (X,Y,Z);
-        zoom += Input.GetAxisRaw("Mouse ScrollWheel")* zoomspeed * Time.deltaTime;
-        transform.Translate (0,0,zoom);
+
         
-        if(zoom <= maxZoom)
+        camX = cam.transform.position.x;
+        camY = cam.transform.position.y;
+        camZ = Player.localPosition.z;
+        poscam = new Vector3 (camX, camY, camZ-7);
+        
+        
+        Debug.DrawLine(poscam,Player.transform.position,Color.blue);
+
+
+        if(Physics.Linecast(poscam,Player.transform.position,out hit, 1 << LayerMask.NameToLayer("Default")))
         {
-            zoom = maxZoom;
+
+          dist = hit.distance*1.2f;
+
+
         }
-        if(zoom>= minZoom)
+
+        else
         {
-            zoom = minZoom;
+
+          dist = -7;
+
         }
+       
+
+
+        //if (Physics.Raycast(cam.transform.position,cam.transform.forward, out hit,3))
+        //{
+          //dist = new Vector3 (X,Y,hit.distance*1.2f);
+            
+        //}
+        
+        //else
+        
+        //{
+          //dist = new Vector3(X,Y,Z);
+          //transform.position = Player.transform.position;
+          //transform.Translate (X,Y,Z);
+
+        //}
+
+        transform.position = Player.transform.position;
+        transform.Translate (X,Y,dist);
+
+            
+
+
+        
+        
+        
+      //  zoom += Input.GetAxisRaw("Mouse ScrollWheel")* zoomspeed * Time.deltaTime;
+       // transform.Translate (0,0,zoom);
+        
+        //if(zoom <= maxZoom)
+        //{
+          //  zoom = maxZoom;
+        //}
+        //if(zoom>= minZoom)
+        //{
+          //  zoom = minZoom;
+        //}
         
     }
     if(fpsCam == true)
