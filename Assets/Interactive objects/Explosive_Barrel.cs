@@ -27,7 +27,7 @@ public class Explosive_Barrel : MonoBehaviour
         
         if (Physics.Raycast(cam.transform.position,cam.transform.forward, out hit, weapon.range))
         {
-            if(hit.collider.tag=="Objet" && Input.GetKeyDown(KeyCode.Mouse0))
+            if(hit.collider.tag=="Objet" && Input.GetKeyDown(KeyCode.Mouse0) && hold.oui == true)
             {
                 Explosive_Barrel explobarrel = hit.transform.GetComponent<Explosive_Barrel>();
                 if(explobarrel != null)
